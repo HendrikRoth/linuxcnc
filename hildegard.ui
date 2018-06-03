@@ -6,288 +6,99 @@
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <child>
-      <object class="HAL_HideTable" id="hal_hidetable1">
+      <object class="State_Sensitive_Table" id="state_sensitive_table1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="n_rows">7</property>
+        <property name="n_rows">2</property>
+        <property name="homogeneous">True</property>
+        <property name="is_homed">False</property>
+        <property name="is_idle">False</property>
+        <property name="is_on">False</property>
         <child>
-          <object class="HAL_HideTable" id="hal_hidetable2">
+          <object class="State_Sensitive_Table" id="state_sensitive_table2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="n_columns">2</property>
-            <child>
-              <object class="HAL_Label" id="hal_label1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Spindel</property>
-              </object>
-            </child>
+            <property name="is_homed">False</property>
             <child>
               <object class="HAL_HBar" id="spindle_state">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="bg_color">#bebebebebebe</property>
-                <property name="max">27000</property>
+                <property name="bg_color">#808080808080</property>
+                <property name="force_height">200</property>
+                <property name="force_width">350</property>
+                <property name="max">24000</property>
                 <property name="min">9000</property>
-                <property name="target_color">#a0a02020f0f0</property>
-                <property name="z0_color">#0000ffff0000</property>
+                <property name="show_limits">False</property>
+                <property name="target_color">#808000008080</property>
+                <property name="text_template">Spindel Drehtzahl: %s</property>
+                <property name="z0_color">#000080800000</property>
                 <property name="z1_color">#ffffffff0000</property>
                 <property name="z2_color">#ffff00000000</property>
               </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-              </packing>
             </child>
           </object>
         </child>
         <child>
-          <object class="HAL_HideTable" id="hal_hidetable3">
+          <object class="State_Sensitive_Table" id="state_sensitive_table3">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="n_rows">3</property>
-            <property name="n_columns">3</property>
+            <property name="is_homed">False</property>
+            <property name="is_idle">False</property>
+            <property name="is_on">False</property>
             <child>
-              <object class="HAL_LED" id="alarm_state_x">
+              <object class="State_Sensitive_Table" id="state_sensitive_table4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="led_blink_rate">0</property>
-                <property name="off_color">white</property>
-                <property name="on_color">red</property>
+                <property name="n_rows">2</property>
+                <property name="n_columns">2</property>
+                <property name="is_homed">False</property>
+                <child>
+                  <object class="HALIO_Button" id="servo_enable">
+                    <property name="label" translatable="yes">Servos aktivieren</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_action_appearance">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="HAL_LED" id="servo_alarm">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="blink_color">yellow</property>
+                    <property name="blink_when_off">True</property>
+                    <property name="is_on">True</property>
+                    <property name="led_blink_rate">6</property>
+                    <property name="led_size">24</property>
+                    <property name="on_color">white</property>
+                  </object>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
               </object>
             </child>
             <child>
-              <object class="HAL_LED" id="alarm_state_y">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="led_blink_rate">0</property>
-                <property name="off_color">white</property>
-                <property name="on_color">red</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-              </packing>
+              <placeholder/>
             </child>
             <child>
-              <object class="HAL_LED" id="alarm_state_z">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="led_blink_rate">0</property>
-                <property name="off_color">white</property>
-                <property name="on_color">red</property>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="right_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HAL_Label" id="hal_label2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="yalign">0</property>
-                <property name="label" translatable="yes">Alarm X</property>
-              </object>
-              <packing>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HAL_Label" id="hal_label3">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="yalign">0</property>
-                <property name="label" translatable="yes">Alarm Y</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HAL_Label" id="hal_label4">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="yalign">0</property>
-                <property name="label" translatable="yes">Alarm Z</property>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="right_attach">3</property>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HALIO_Button" id="enable_x">
-                <property name="label" translatable="yes">Aktivieren</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-              <packing>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HALIO_Button" id="enable_y">
-                <property name="label" translatable="yes">Aktivieren</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HALIO_Button" id="enable_z">
-                <property name="label" translatable="yes">Aktivieren</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="right_attach">3</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-              </packing>
+              <placeholder/>
             </child>
           </object>
           <packing>
-            <property name="top_attach">2</property>
-            <property name="bottom_attach">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="HAL_HideTable" id="hal_hidetable4">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="n_rows">2</property>
-            <property name="n_columns">2</property>
-            <child>
-              <object class="HAL_LED" id="mms_state">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="led_blink_rate">0</property>
-                <property name="off_color">grey</property>
-              </object>
-            </child>
-            <child>
-              <object class="HAL_LED" id="vacuum_state">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="led_blink_rate">0</property>
-                <property name="off_color">grey</property>
-              </object>
-              <packing>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HAL_ToggleButton" id="mms_toggle">
-                <property name="label" translatable="yes">Minimalmengenschmierung</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HAL_ToggleButton" id="vacuum_toggle">
-                <property name="label" translatable="yes">Vakuumpumpe</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="top_attach">6</property>
-            <property name="bottom_attach">7</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="State_Sensitive_Table" id="state_sensitive_table1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="n_columns">3</property>
-            <child>
-              <object class="HAL_Button" id="hal_button1">
-                <property name="label" translatable="yes">Home</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-            </child>
-            <child>
-              <object class="HAL_Button" id="hal_button2">
-                <property name="label" translatable="yes">Zero All</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="HAL_Button" id="hal_button3">
-                <property name="label" translatable="yes">Werkzeugl.</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="right_attach">3</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="top_attach">4</property>
-            <property name="bottom_attach">5</property>
+            <property name="top_attach">1</property>
+            <property name="bottom_attach">2</property>
           </packing>
         </child>
       </object>
     </child>
   </object>
 </interface>
-

@@ -43,21 +43,22 @@ net abort     <=  hm2_7i76e.0.7i76.0.0.input-09
 
 # Step Gen signals/setup
 
-setp   hm2_7i76e.0.stepgen.00.dirsetup        [AXIS_0]DIRSETUP
-setp   hm2_7i76e.0.stepgen.00.dirhold         [AXIS_0]DIRHOLD
-setp   hm2_7i76e.0.stepgen.00.steplen         [AXIS_0]STEPLEN
-setp   hm2_7i76e.0.stepgen.00.stepspace       [AXIS_0]STEPSPACE
-setp   hm2_7i76e.0.stepgen.00.position-scale  [AXIS_0]STEP_SCALE
-setp   hm2_7i76e.0.stepgen.00.step_type        0
-setp   hm2_7i76e.0.stepgen.00.control-type     0
-setp   hm2_7i76e.0.stepgen.00.maxaccel         [AXIS_0]STEPGEN_MAXACCEL
-setp   hm2_7i76e.0.stepgen.00.maxvel           [AXIS_0]STEPGEN_MAXVEL
+setp   hm2_7i76e.0.stepgen.01.dirsetup        [AXIS_0]DIRSETUP
+setp   hm2_7i76e.0.stepgen.01.dirhold         [AXIS_0]DIRHOLD
+setp   hm2_7i76e.0.stepgen.01.steplen         [AXIS_0]STEPLEN
+setp   hm2_7i76e.0.stepgen.01.stepspace       [AXIS_0]STEPSPACE
+setp   hm2_7i76e.0.stepgen.01.position-scale  [AXIS_0]STEP_SCALE
+setp   hm2_7i76e.0.stepgen.01.step_type        0
+setp   hm2_7i76e.0.stepgen.01.control-type     0
+setp   hm2_7i76e.0.stepgen.01.maxaccel         [AXIS_0]STEPGEN_MAXACCEL
+setp   hm2_7i76e.0.stepgen.01.maxvel           [AXIS_0]STEPGEN_MAXVEL
+setp   hm2_7i76e.0.gpio.002.invert_output true
 
 # ---openloop stepper signals---
 
-net x-pos-fb     axis.0.motor-pos-fb   <=  hm2_7i76e.0.stepgen.00.position-fb
-net x-pos-cmd    axis.0.motor-pos-cmd  =>  hm2_7i76e.0.stepgen.00.position-cmd
-net x-enable     axis.0.amp-enable-out =>  hm2_7i76e.0.stepgen.00.enable
+net x-pos-fb     axis.0.motor-pos-fb   <=  hm2_7i76e.0.stepgen.01.position-fb
+net x-pos-cmd    axis.0.motor-pos-cmd  =>  hm2_7i76e.0.stepgen.01.position-cmd
+net x-enable     axis.0.amp-enable-out =>  hm2_7i76e.0.stepgen.01.enable
 
 
 # ---setup home / limit switch signals---
@@ -72,21 +73,21 @@ net x-neg-limit     =>  axis.0.neg-lim-sw-in
 
 # Step Gen signals/setup
 
-setp   hm2_7i76e.0.stepgen.01.dirsetup        [AXIS_1]DIRSETUP
-setp   hm2_7i76e.0.stepgen.01.dirhold         [AXIS_1]DIRHOLD
-setp   hm2_7i76e.0.stepgen.01.steplen         [AXIS_1]STEPLEN
-setp   hm2_7i76e.0.stepgen.01.stepspace       [AXIS_1]STEPSPACE
-setp   hm2_7i76e.0.stepgen.01.position-scale  [AXIS_1]STEP_SCALE
-setp   hm2_7i76e.0.stepgen.01.step_type        0
-setp   hm2_7i76e.0.stepgen.01.control-type     0
-setp   hm2_7i76e.0.stepgen.01.maxaccel         [AXIS_1]STEPGEN_MAXACCEL
-setp   hm2_7i76e.0.stepgen.01.maxvel           [AXIS_1]STEPGEN_MAXVEL
+setp   hm2_7i76e.0.stepgen.00.dirsetup        [AXIS_1]DIRSETUP
+setp   hm2_7i76e.0.stepgen.00.dirhold         [AXIS_1]DIRHOLD
+setp   hm2_7i76e.0.stepgen.00.steplen         [AXIS_1]STEPLEN
+setp   hm2_7i76e.0.stepgen.00.stepspace       [AXIS_1]STEPSPACE
+setp   hm2_7i76e.0.stepgen.00.position-scale  [AXIS_1]STEP_SCALE
+setp   hm2_7i76e.0.stepgen.00.step_type        0
+setp   hm2_7i76e.0.stepgen.00.control-type     0
+setp   hm2_7i76e.0.stepgen.00.maxaccel         [AXIS_1]STEPGEN_MAXACCEL
+setp   hm2_7i76e.0.stepgen.00.maxvel           [AXIS_1]STEPGEN_MAXVEL
 
 # ---openloop stepper signals---
 
-net y-pos-fb     axis.1.motor-pos-fb   <=  hm2_7i76e.0.stepgen.01.position-fb
-net y-pos-cmd    axis.1.motor-pos-cmd  =>  hm2_7i76e.0.stepgen.01.position-cmd
-net y-enable     axis.1.amp-enable-out =>  hm2_7i76e.0.stepgen.01.enable
+net y-pos-fb     axis.1.motor-pos-fb   <=  hm2_7i76e.0.stepgen.00.position-fb
+net y-pos-cmd    axis.1.motor-pos-cmd  =>  hm2_7i76e.0.stepgen.00.position-cmd
+net y-enable     axis.1.amp-enable-out =>  hm2_7i76e.0.stepgen.00.enable
 
 # ---setup home / limit switch signals---
 
@@ -160,7 +161,7 @@ net spindle-ccw         => hm2_7i76e.0.7i76.0.0.spindir
 
 net spindle-vel-cmd-rps        <=  motion.spindle-speed-out-rps
 net spindle-vel-cmd-rps-abs    <=  motion.spindle-speed-out-rps-abs
-net spindle-vel-cmd-rpm        <=  motion.spindle-speed-out
+#net spindle-vel-cmd-rpm        <=  motion.spindle-speed-out
 net spindle-vel-cmd-rpm-abs    <=  motion.spindle-speed-out-abs
 net spindle-enable             <=  motion.spindle-on
 net spindle-cw                 <=  motion.spindle-forward
@@ -213,7 +214,7 @@ net coolant-flood     <=  iocontrol.0.coolant-flood
 
 #  ---probe signal---
 
-#net probe-in     =>  motion.probe-input
+net probe-in     =>  motion.probe-input
 
 #  ---motion control signals---
 
