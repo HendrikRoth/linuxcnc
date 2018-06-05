@@ -1,0 +1,78 @@
+O<tool-change> SUB
+( Filename: tool-change.ngc )
+
+(------------------------------- CONFIGURATION PARAMETERS ----------------------------------------------)
+#<_TravelFeed> =      2000.0     ( feedrate used for general Z moves when avoiding G0 )
+#<_TravelZ> =          0.0	( high level position to move at for probing )
+#<_ProbeX> =          -3.5	( x position of probe sensor )
+#<_ProbeY> =           463.0	( y position of probe sensor )
+#<_ProbeRetract> =      1.0     ( small distance to retract before approaching switch/touch-off plate second time )
+#<_ProbeFastFeed> =   1000.0     ( feed rate for moving to _ProbeFastZ )
+#<_ProbeFeed1> =       100.0     ( feed rate for touching switch/touch-off plate first time )
+#<_ProbeFeed2> =       10.0     ( feed rate for touching switch/touch-off plate second time )
+#<_ProbeLong> = -40		( distance to move in z before probing for touch probe )
+#<_ProbeShort> = -80		( distance to move in z before probing for tools )
+#<_ProbeMinZ> = -120		( max distance in z for probe routine. shortest tool should trip before this)
+#<_ProbeRetract> = 1		( distance to retract before starting slow probe )
+#<_tool> = #<_selected_tool>
+#<_Ztravel> = 120		( distance between machine zero and touch off sensor )
+#<_previous_tool> = #<_current_tool>  ( sets previous tool variable )
+(-------------------------------------------------------------------------------------------------------)
+
+O100 if [#<_task> EQ 0]		( only run the subroutine in milltask interpreter. **Critical** keep )
+        (debug, Task ist Null)
+O100     return [999]
+O100 endif
+
+G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]	( move to high z position )
+G10 L2 P9 x0 y0 z0
+
+o200 IF [ #<_tool> EQ 0 ]	( check if tool zero selected and end routine )
+(MSG, No Tool Selected )
+o200 ENDIF
+
+G49				( turn off tool compensation )						
+G94				( units per minute feed rate )
+G40				( turn off cutter compensation )
+G90				( use absolute mode )
+G59.3
+M6				( run normal M6 operation )
+
+O300 IF [ #<_tool> EQ #<_previous_tool> ]
+  (debug, Tool in spindle no change required)
+O300 ELSEIF [ #<_tool> EQ 1 ]									
+  G53 G0 X[#<_ProbeX>] Y[#<_ProbeY>]									
+  G53 G1 F[#<_ProbeFastFeed>] Z[#<_ProbeLong>]							
+  G59.3 G1 F[#<_ProbeFeed1>] G91                 								
+  G38.2 Z[#<_ProbeMinZ> - #<_ProbeLong>] F[#<_ProbeFeed1>]    					
+  G0 Z[#<_ProbeRetract>]                       								
+  G38.2 Z[#<_ProbeRetract>*-1.25] F[#<_ProbeFeed2>] 
+  G90                                                                            							
+  #<_ToolZRef> = #5063
+  #<_ToolConv> = [#<_ToolZRef>*-1]
+  #<_ToolOffset> = [#<_ZTravel> - #<_ToolConv>]
+  G10 L1 P#<_tool> Z#<_ToolOffset>										
+  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>] 
+   
+O300 ELSEIF [ #<_tool> GT 1 ]										
+  G53 G0 X[#<_ProbeX>] Y[#<_ProbeY>]           								
+  G53 G1 F[#<_ProbeFastFeed>] Z[#<_ProbeShort>]							
+  G59.3 G1 F[#<_ProbeFeed1>] G91                 								
+  G38.2 Z[#<_ProbeMinZ> - #<_ProbeShort>] F[#<_ProbeFeed1>]    					
+  G0 Z[#<_ProbeRetract>]                       								
+  G38.2 Z[#<_ProbeRetract>*-1.25] F[#<_ProbeFeed2>] 
+  G90                                                                            							
+  #<_ToolZRef> = #5063
+  #<_ToolConv> = [#<_ToolZRef>*-1]
+  #<_ToolOffset> = [#<_ZTravel> - #<_ToolConv>]
+  G10 L1 P#<_tool> Z#<_ToolOffset>										
+  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>] 
+
+o300 ENDIF   
+
+#<_previous_tool> = #<_tool>
+G54
+G43		
+
+O<tool-change> ENDSUB
+M2

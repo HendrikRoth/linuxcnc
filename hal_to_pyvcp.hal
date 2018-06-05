@@ -1,0 +1,3 @@
+net spindle-vel-cmd-rpm		pyvcp.spindle-speed		<= motion.spindle-speed-out
+net panel-tool-change		halui.mdi-command-15		<= pyvcp.tool-change
+net panel-tool-zero		halui.mdi-command-16		<= pyvcp.tool-zero

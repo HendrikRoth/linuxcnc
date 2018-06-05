@@ -1,0 +1,9 @@
+o<zero-z> sub
+	G91			( relative Koordinaten			)
+	G38.2 Z-100 F300		( Schalter antasten			)
+	G38.4 Z1 F5		( Schalter wegfahren			)
+	G92 Z4.0383		( Probe Hoehe				)
+	G1 Z40 F5000		( Freifahren				)
+	G90			( absolute Koordinaten			)
+o<zero-z> endsub
+M2				( zurück zum Hauptprogramm		)

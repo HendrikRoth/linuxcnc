@@ -1,0 +1,18 @@
+<pyvcp>
+	<label>
+		<text>"Spindel Geschwindigkeit"</text>
+	</label>
+	<bar>
+		<halpin>"spindle-speed"</halpin>
+		<max_>24000</max_>
+	</bar>
+
+	<button>
+		<halpin>"tool-change"</halpin>
+		<text>"Werkzeugwechsel"</text>
+	</button>
+	<button>
+		<halpin>"tool-zero"</halpin>
+		<text>"Zero Z"</text>
+	</button>
+</pyvcp>
